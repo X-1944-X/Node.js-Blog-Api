@@ -4,7 +4,7 @@ const sha1 = require('sha1')
 const express = require('express')
 const router = express.Router()
 
-const UserModel = require('../models/users')
+const UserModel = require('../models/myusers')
 const checkNotLogin = require('../middlewares/check').checkNotLogin
 
 // GET /signup 注册页
@@ -52,7 +52,7 @@ router.post('/', checkNotLogin, function (req, res, next) {
   password = sha1(password)
 
   // 待写入数据库的用户信息
-  let user = {
+  let myuser = {
     name: name,
     password: password,
     gender: gender,
@@ -60,13 +60,13 @@ router.post('/', checkNotLogin, function (req, res, next) {
     avatar: avatar
   }
   // 用户信息写入数据库
-  UserModel.create(user)
+  UserModel.create(myuser)
     .then(function (result) {
       // 此 user 是插入 mongodb 后的值，包含 _id
-      user = result.ops[0]
+      myuser = result.ops[0]
       // 删除密码这种敏感信息，将用户信息存入 session
-      delete user.password
-      req.session.user = user
+      delete myuser.password
+      req.session.user = myuser
       // 写入 flash
       req.flash('success', '注册成功')
       // 跳转到首页
