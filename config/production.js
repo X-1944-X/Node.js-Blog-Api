@@ -1,4 +1,4 @@
 module.exports = {
-  port: 80,
-  mongodb: 'mongodb://luyu:123456@ds113736.mlab.com:13736/myblog'
+  port: 3000,
+  mongodb: 'mongodb://45.77.121.237:27017/myblog'
 }
