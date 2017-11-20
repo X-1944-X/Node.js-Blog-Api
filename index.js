@@ -10,6 +10,7 @@ const winston = require('winston')
 const expressWinston = require('express-winston')
 
 const app = express()
+const port = process.env.PORT || config.port
 
 // 设置模板目录
 app.set('views', path.join(__dirname, 'views'))
