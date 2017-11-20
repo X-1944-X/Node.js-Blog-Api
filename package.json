@@ -4,7 +4,8 @@
   "description": "my node blog",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test"
+    "test": "nyc --reporter=html --reporter=text mocha",
+    "start": "NODE_ENV=production pm2 start index.js --name 'myblog'"
   },
   "author": "luyu",
   "license": "ISC",
